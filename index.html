@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cortex - Content Authority at Scale</title>
+    <meta name="description" content="The AI search era demands content authority. Cortex builds systematic citation dominance—enterprise infrastructure, not another tool.">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #1A1A1A;
+            --white: #F2F2F2;
+            --red: #FF3B30;
+            --gray: #666666;
+            --light-gray: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--black);
+            line-height: 1.6;
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 2px solid var(--black);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 120px;
+            width: auto;
+        }
+
+        .footer-logo {
+            height: 100px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: var(--red);
+            color: var(--white);
+            padding: 12px 32px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--black);
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--black);
+            color: var(--white);
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 20px;
+            background: var(--red);
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 84px;
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .hero-subtitle {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            border-left: 8px solid var(--red);
+            padding-left: 20px;
+            color: var(--light-gray);
+        }
+
+        .hero-description {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            max-width: 700px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 20px 48px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-cta:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--red);
+            color: var(--white);
+            padding: 40px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 24px;
+            color: var(--red);
+            margin-bottom: 60px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        /* Crisis Section */
+        .crisis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .crisis-card {
+            background: var(--white);
+            padding: 40px;
+            border: 3px solid var(--black);
+        }
+
+        .crisis-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .crisis-card p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .crisis-number {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        /* Opportunity Section */
+        .opportunity-section {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .opportunity-section .section-subtitle {
+            color: var(--red);
+            border-bottom-color: var(--white);
+        }
+
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .opportunity-stat {
+            text-align: center;
+            padding: 40px;
+            border: 2px solid var(--white);
+        }
+
+        .opportunity-stat .number {
+            font-size: 64px;
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 20px;
+        }
+
+        .opportunity-stat .label {
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        /* Solution Section */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .solution-card {
+            background: var(--white);
+            padding: 40px;
+            border: 2px solid var(--black);
+        }
+
+        .solution-card h3 {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .solution-card p {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .solution-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--light-gray);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .process-step {
+            background: var(--white);
+            padding: 40px;
+            border-left: 8px solid var(--red);
+        }
+
+        .process-step h3 {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .process-step p {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .step-number {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        /* Differentiators */
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .diff-column h3 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .diff-column ul {
+            list-style: none;
+        }
+
+        .diff-column li {
+            font-size: 18px;
+            line-height: 2.2;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .diff-column li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            font-weight: 900;
+        }
+
+        .diff-left {
+            opacity: 0.5;
+        }
+
+        .diff-right {
+            background: var(--black);
+            color: var(--white);
+            padding: 40px;
+        }
+
+        /* Cost of Inaction */
+        .cost-section {
+            background: var(--red);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cost-section .section-title {
+            color: var(--white);
+        }
+
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .cost-item h3 {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .cost-item p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            padding: 40px;
+            border: 3px solid var(--black);
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--red);
+        }
+
+        .pricing-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .pricing-card .price {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            font-size: 16px;
+            line-height: 2;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .pricing-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 900;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .final-cta h2 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .final-cta p {
+            font-size: 24px;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 60px 0 30px;
+            border-top: 2px solid var(--red);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .footer-column a:hover {
+            color: var(--red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray);
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .container {
+                padding: 0 30px;
+            }
+
+            .hero h1 {
+                font-size: 56px;
+            }
+
+            .hero-subtitle {
+                font-size: 24px;
+            }
+
+            .stats-grid,
+            .crisis-grid,
+            .opportunity-grid,
+            .solution-grid,
+            .process-grid,
+            .diff-grid,
+            .cost-grid,
+            .pricing-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <img src="cortex_logo_black_transparent.png" alt="Cortex" class="logo-image">
+                <a href="#demo" class="cta-button">See It Live</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>The Invisible<br>Crisis</h1>
+                <div class="hero-subtitle">Your prospects can't find you. And they're not looking anymore.</div>
+                <p class="hero-description">
+                    Search is dead. AI is answering questions without sending traffic. Your competitors are getting cited. You're not. 
+                    And every day you wait, the gap widens.
+                </p>
+                <a href="#demo" class="hero-cta">Book Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div>
+                    <span class="stat-number">58.5%</span>
+                    <span class="stat-label">Of searches never click through—AI answers them first</span>
+                </div>
+                <div>
+                    <span class="stat-number">800M</span>
+                    <span class="stat-label">People use ChatGPT weekly—bypassing Google entirely</span>
+                </div>
+                <div>
+                    <span class="stat-number">86%</span>
+                    <span class="stat-label">Of AI citations come from sources OUTSIDE the top 10</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crisis Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Two Problems. One Outcome.</h2>
+            <p class="section-subtitle">Your content strategy is failing on both fronts</p>
+            
+            <div class="crisis-grid">
+                <div class="crisis-card">
+                    <div class="crisis-number">01</div>
+                    <h3>Your Content Sounds Like Everyone Else's</h3>
+                    <p>Be honest: Does your content make prospects stop and think "I've never heard it put that way before"? Or does it sound like the same recycled advice they've seen a hundred times? Generic doesn't convert. It doesn't get shared. And it definitely doesn't get cited by AI.</p>
+                </div>
+                <div class="crisis-card">
+                    <div class="crisis-number">02</div>
+                    <h3>You're Invisible to AI Search</h3>
+                    <p>Right now, someone is asking ChatGPT or Google AI about your industry. They're getting an answer. But it's not citing YOU—it's citing your competitor. Because AI doesn't reward SEO tricks. It rewards authority. And you're not building it fast enough.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost of Inaction -->
+    <section class="cost-section">
+        <div class="container">
+            <h2 class="section-title">What Happens If You Wait</h2>
+            <p class="section-subtitle" style="border-bottom-color: white;">This isn't a future problem. It's happening now.</p>
+            
+            <div class="cost-grid">
+                <div class="cost-item">
+                    <h3>$750B</h3>
+                    <p>Will shift to businesses that dominate AI search by 2028</p>
+                </div>
+                <div class="cost-item">
+                    <h3>15-64%</h3>
+                    <p>Traffic loss for businesses without citation authority</p>
+                </div>
+                <div class="cost-item">
+                    <h3>2028</h3>
+                    <p>AI search surpasses traditional search—just 2 years away</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunity -->
+    <section class="opportunity-section">
+        <div class="container">
+            <h2 class="section-title">But Here's the Opportunity</h2>
+            <p class="section-subtitle">AI citations aren't just visibility—they're pre-qualified leads</p>
+            
+            <div class="opportunity-grid">
+                <div class="opportunity-stat">
+                    <div class="number">14.2%</div>
+                    <div class="label">Visitors from AI search convert at this rate—5x higher than traditional search</div>
+                </div>
+                <div class="opportunity-stat">
+                    <div class="number">2.8%</div>
+                    <div class="label">Traditional search conversion rate—because they're still shopping around</div>
+                </div>
+            </div>
+            <p style="margin-top: 60px; font-size: 20px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                When AI cites you, it's not just sending traffic. It's sending people who already trust you—because the AI trusted you first. That's why they convert 5x better.
+            </p>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">The Solution: Authority + Scale</h2>
+            <p class="section-subtitle">You can't build citation authority with generic content. And you can't do it slowly.</p>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <span class="solution-icon">🎯</span>
+                    <h3>Real Authority</h3>
+                    <p>Every piece passes through a quality panel that scores it like real readers would. If it doesn't pass, it doesn't ship. No exceptions.</p>
+                </div>
+                <div class="solution-card">
+                    <span class="solution-icon">⚡</span>
+                    <h3>Real Scale</h3>
+                    <p>Most businesses can produce 1-2 quality pieces per week. Cortex produces publication-ready content daily. That's the difference between keeping up and pulling ahead.</p>
+                </div>
+                <div class="solution-card">
+                    <span class="solution-icon">🔄</span>
+                    <h3>Real Infrastructure</h3>
+                    <p>This isn't another tool that requires your oversight. It's infrastructure that runs autonomously—with quality control built in, not bolted on.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Actually Works</h2>
+            <p class="section-subtitle">Think of it like a newsroom—but the entire staff is AI, and they never sleep</p>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <h3>Research & Strategy</h3>
+                    <p>First, we figure out what your audience actually cares about—not what you think they care about. Then we map content to their real questions and pain points.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <h3>Multi-Agent Production</h3>
+                    <p>Seven specialized AI agents work in sequence—research, drafting, style, visuals, quality checks, revisions, final assembly. Each one focused on doing one thing exceptionally well.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <h3>Quality Control</h3>
+                    <p>A simulated panel of 10 different reader types scores every piece. Does it engage? Is it clear? Would they share it? If the scores are low, it goes back for revision—automatically.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <h3>Endless Variety</h3>
+                    <p>Over 50 different content formats and styles. Stories, tactical breakdowns, contrarian takes, industry rants. Your content never sounds repetitive because the system knows how to vary structure and voice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiators -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Why This Is Different</h2>
+            <p class="section-subtitle">Most AI content tools are glorified chatbots. This is infrastructure.</p>
+            
+            <div class="diff-grid">
+                <div class="diff-column diff-left">
+                    <h3>AI Writing Tools</h3>
+                    <ul>
+                        <li>You prompt, it generates</li>
+                        <li>Generic output every time</li>
+                        <li>You edit everything</li>
+                        <li>No quality control</li>
+                        <li>Same content as competitors</li>
+                    </ul>
+                </div>
+                <div class="diff-column diff-right">
+                    <h3>Cortex Infrastructure</h3>
+                    <ul>
+                        <li>Autonomous operation</li>
+                        <li>Quality panel scores everything</li>
+                        <li>Publication-ready output</li>
+                        <li>Built for AI citations</li>
+                        <li>Differentiated by design</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 60px; font-size: 20px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                Tools require your time. Infrastructure saves it. That's the difference between a $50/month subscription and enterprise-grade content operations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section style="background: var(--light-gray);">
+        <div class="container">
+            <h2 class="section-title">How We Work Together</h2>
+            <p class="section-subtitle">Three ways to get started, depending on how much control you want</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Full-Service</h3>
+                    <div class="price">Custom</div>
+                    <ul>
+                        <li>We handle everything</li>
+                        <li>Strategy to publishing</li>
+                        <li>Performance tracking</li>
+                        <li>Ongoing optimization</li>
+                    </ul>
+                    <a href="#demo" class="cta-button">Contact Sales</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Hybrid</h3>
+                    <div class="price">Custom</div>
+                    <ul>
+                        <li>We produce, you publish</li>
+                        <li>Your brand voice</li>
+                        <li>Your approval workflow</li>
+                        <li>Your distribution</li>
+                    </ul>
+                    <a href="#demo" class="cta-button">Contact Sales</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <ul>
+                        <li>License the engine</li>
+                        <li>Your infrastructure</li>
+                        <li>Full customization</li>
+                        <li>White-label option</li>
+                    </ul>
+                    <a href="#demo" class="cta-button">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="demo">
+        <div class="container">
+            <h2>See It Live</h2>
+            <p>Book 30 minutes. We'll show you the engine in action and map your content roadmap.</p>
+            <a href="mailto:hello@usecortex.app?subject=Demo Request" class="hero-cta">Book Your Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <img src="cortex_logo_white_transparent.png" alt="Cortex" class="footer-logo">
+                    <p style="margin-top: 20px; line-height: 1.8;">Content Authority at Scale.<br>Enterprise infrastructure for the AI search era.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#how">How It Works</a></li>
+                        <li><a href="#demo">Pricing</a></li>
+                        <li><a href="#demo">Book Demo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="mailto:hello@usecortex.app">Contact</a></li>
+                        <li><a href="privacy.html">Privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cortex Content Intelligence. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
